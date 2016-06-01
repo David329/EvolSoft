@@ -138,10 +138,11 @@ public class AlumnoTest {
     @Test
     public void DBEnterosIguales() {
         Connection cn = null;
+        int expResult = 4;
+        int result = 0;
         try {
             System.out.println("DBEnterosIguales");
-            int expResult = 4;
-            int result = 0;
+
             cn = AccesoDB.getConnection();
             StringBuilder query = new StringBuilder();
             query.append("SELECT a FROM Enteros WHERE a=?");
@@ -152,8 +153,6 @@ public class AlumnoTest {
                 result = rs.getInt(1);
             }
 
-            assertEquals(expResult, result, 0.0);
-
         } catch (SQLException ex) {
             throw new RuntimeException(ex.getMessage());
         } catch (Exception e) {
@@ -161,20 +160,22 @@ public class AlumnoTest {
         } finally {
             try {
                 if (cn != null) {
+                    assertEquals(expResult, result, 0.0);
                     cn.close();
                 }
             } catch (Exception ex) {
             }
         }
     }
-    
+
     @Test
     public void DBEnterosDiferentes() {
         Connection cn = null;
+        int expResult = 0;
+        int result = 0;
         try {
             System.out.println("DBEnterosDiferentes");
-            int expResult = 0;
-            int result = 0;
+
             cn = AccesoDB.getConnection();
             StringBuilder query = new StringBuilder();
             query.append("SELECT a FROM Enteros WHERE a=?");
@@ -185,8 +186,6 @@ public class AlumnoTest {
                 result = rs.getInt(1);
             }
 
-            assertEquals(expResult, result, 0.0);
-
         } catch (SQLException ex) {
             throw new RuntimeException(ex.getMessage());
         } catch (Exception e) {
@@ -194,20 +193,22 @@ public class AlumnoTest {
         } finally {
             try {
                 if (cn != null) {
+                    assertEquals(expResult, result, 0.0);
                     cn.close();
                 }
             } catch (Exception ex) {
             }
         }
     }
-    
+
     @Test
     public void DBTextoIgual() {
         Connection cn = null;
+        String expResult = "hola";
+        String result = "";
         try {
             System.out.println("DBTextoIgual");
-            String expResult = "hola";
-            String result="";
+
             cn = AccesoDB.getConnection();
             StringBuilder query = new StringBuilder();
             query.append("SELECT b FROM Strings WHERE b=?");
@@ -218,8 +219,6 @@ public class AlumnoTest {
                 result = rs.getString(1);
             }
 
-            assertEquals(expResult, result);
-
         } catch (SQLException ex) {
             throw new RuntimeException(ex.getMessage());
         } catch (Exception e) {
@@ -227,20 +226,22 @@ public class AlumnoTest {
         } finally {
             try {
                 if (cn != null) {
+                    assertEquals(expResult, result);
                     cn.close();
                 }
             } catch (Exception ex) {
             }
         }
     }
-    
+
     @Test
     public void DBTextoDiferente() {
         Connection cn = null;
+        String expResult = "hello";
+        String result = "";
         try {
             System.out.println("DBTextoDiferente");
-            String expResult = "hello";
-            String result="";
+
             cn = AccesoDB.getConnection();
             StringBuilder query = new StringBuilder();
             query.append("SELECT b FROM Strings WHERE b=?");
@@ -251,8 +252,6 @@ public class AlumnoTest {
                 result = rs.getString(1);
             }
 
-            assertEquals(expResult, result);
-
         } catch (SQLException ex) {
             throw new RuntimeException(ex.getMessage());
         } catch (Exception e) {
@@ -260,20 +259,22 @@ public class AlumnoTest {
         } finally {
             try {
                 if (cn != null) {
+                    assertEquals(expResult, result);
                     cn.close();
                 }
             } catch (Exception ex) {
             }
         }
     }
-     
+
     @Test
     public void DBDecimalIguales() {
         Connection cn = null;
+        double expResult = 10.53;
+        double result = 0.0;
         try {
             System.out.println("DBDecimalIguales");
-            double expResult = 10.53;
-            double result=0.0;
+
             cn = AccesoDB.getConnection();
             StringBuilder query = new StringBuilder();
             query.append("SELECT c FROM Decimal WHERE c=?");
@@ -284,8 +285,6 @@ public class AlumnoTest {
                 result = rs.getDouble(1);
             }
 
-            assertEquals(expResult, result,0.0);
-
         } catch (SQLException ex) {
             throw new RuntimeException(ex.getMessage());
         } catch (Exception e) {
@@ -293,20 +292,22 @@ public class AlumnoTest {
         } finally {
             try {
                 if (cn != null) {
+                    assertEquals(expResult, result, 0.0);
                     cn.close();
                 }
             } catch (Exception ex) {
             }
         }
     }
-    
+
     @Test
     public void DBDecimalDiferentes() {
         Connection cn = null;
+        double expResult = 11.53;
+        double result = 0.0;
         try {
             System.out.println("DBDecimalDiferentes");
-            double expResult = 11.53;
-            double result=0.0;
+
             cn = AccesoDB.getConnection();
             StringBuilder query = new StringBuilder();
             query.append("SELECT c FROM Decimal WHERE c=?");
@@ -317,8 +318,6 @@ public class AlumnoTest {
                 result = rs.getDouble(1);
             }
 
-            assertEquals(expResult, result,0.0);
-
         } catch (SQLException ex) {
             throw new RuntimeException(ex.getMessage());
         } catch (Exception e) {
@@ -326,6 +325,7 @@ public class AlumnoTest {
         } finally {
             try {
                 if (cn != null) {
+                    assertEquals(expResult, result, 0.0);
                     cn.close();
                 }
             } catch (Exception ex) {
