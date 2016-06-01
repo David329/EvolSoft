@@ -36,7 +36,7 @@ public class AlumnoTest {
         System.out.println("TextNumericoDiferentes");
         double expResult = 13.22;
         double result = David.HallarPromedio();
-        assertEquals(expResult, result, 0.0);
+        assertNotEquals(expResult, result, 0.0);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class AlumnoTest {
         System.out.println("TestTextoDiferentes");
         String expResult = "Dave";
         String result = David.MiNombre();
-        assertEquals(expResult, result);
+        assertNotEquals(expResult, result);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class AlumnoTest {
         System.out.println("TestBooleanDiferentes");
         boolean expResult = false;
         boolean result = David.Resultado();
-        assertEquals(expResult, result);
+        assertNotEquals(expResult, result);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class AlumnoTest {
         System.out.println("TestObjetoDiferentes");
         Object expResult = null;
         Object result = David.retornarDavid(David);
-        assertEquals(expResult, result);
+        assertNotEquals(expResult, result);
     }
 
     @Test
@@ -120,7 +120,7 @@ public class AlumnoTest {
         System.out.println("TestListasDiferentes");
         Object expResult = null;
         Object result = David.retornarLista(lstAlumno);
-        assertEquals(expResult, result);
+        assertNotEquals(expResult, result);
     }
 
     @Test
@@ -193,7 +193,7 @@ public class AlumnoTest {
         } finally {
             try {
                 if (cn != null) {
-                    assertEquals(expResult, result, 0.0);
+                    assertNotEquals(expResult, result, 0.0);
                     cn.close();
                 }
             } catch (Exception ex) {
@@ -259,7 +259,7 @@ public class AlumnoTest {
         } finally {
             try {
                 if (cn != null) {
-                    assertEquals(expResult, result);
+                    assertNotEquals(expResult, result);
                     cn.close();
                 }
             } catch (Exception ex) {
@@ -325,7 +325,7 @@ public class AlumnoTest {
         } finally {
             try {
                 if (cn != null) {
-                    assertEquals(expResult, result, 0.0);
+                    assertNotEquals(expResult, result, 0.0);
                     cn.close();
                 }
             } catch (Exception ex) {
