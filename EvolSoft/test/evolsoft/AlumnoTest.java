@@ -7,10 +7,11 @@ package evolsoft;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -132,5 +133,203 @@ public class AlumnoTest {
     public void TestException2Conversion() {
         Alumno David = new Alumno();
         David.Exception2Conversion();
+    }
+
+    @Test
+    public void DBEnterosIguales() {
+        Connection cn = null;
+        try {
+            System.out.println("DBEnterosIguales");
+            int expResult = 4;
+            int result = 0;
+            cn = AccesoDB.getConnection();
+            StringBuilder query = new StringBuilder();
+            query.append("SELECT a FROM Enteros WHERE a=?");
+            PreparedStatement ps = cn.prepareStatement(query.toString());
+            ps.setInt(1, 4);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result = rs.getInt(1);
+            }
+
+            assertEquals(expResult, result, 0.0);
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("No se tiene acceso al servidor");
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception ex) {
+            }
+        }
+    }
+    
+    @Test
+    public void DBEnterosDiferentes() {
+        Connection cn = null;
+        try {
+            System.out.println("DBEnterosDiferentes");
+            int expResult = 0;
+            int result = 0;
+            cn = AccesoDB.getConnection();
+            StringBuilder query = new StringBuilder();
+            query.append("SELECT a FROM Enteros WHERE a=?");
+            PreparedStatement ps = cn.prepareStatement(query.toString());
+            ps.setInt(1, 4);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result = rs.getInt(1);
+            }
+
+            assertEquals(expResult, result, 0.0);
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("No se tiene acceso al servidor");
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception ex) {
+            }
+        }
+    }
+    
+    @Test
+    public void DBTextoIgual() {
+        Connection cn = null;
+        try {
+            System.out.println("DBTextoIgual");
+            String expResult = "hola";
+            String result="";
+            cn = AccesoDB.getConnection();
+            StringBuilder query = new StringBuilder();
+            query.append("SELECT b FROM Strings WHERE b=?");
+            PreparedStatement ps = cn.prepareStatement(query.toString());
+            ps.setString(1, "hola");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result = rs.getString(1);
+            }
+
+            assertEquals(expResult, result);
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("No se tiene acceso al servidor");
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception ex) {
+            }
+        }
+    }
+    
+    @Test
+    public void DBTextoDiferente() {
+        Connection cn = null;
+        try {
+            System.out.println("DBTextoDiferente");
+            String expResult = "hello";
+            String result="";
+            cn = AccesoDB.getConnection();
+            StringBuilder query = new StringBuilder();
+            query.append("SELECT b FROM Strings WHERE b=?");
+            PreparedStatement ps = cn.prepareStatement(query.toString());
+            ps.setString(1, "hola");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result = rs.getString(1);
+            }
+
+            assertEquals(expResult, result);
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("No se tiene acceso al servidor");
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception ex) {
+            }
+        }
+    }
+     
+    @Test
+    public void DBDecimalIguales() {
+        Connection cn = null;
+        try {
+            System.out.println("DBDecimalIguales");
+            double expResult = 10.53;
+            double result=0.0;
+            cn = AccesoDB.getConnection();
+            StringBuilder query = new StringBuilder();
+            query.append("SELECT c FROM Decimal WHERE c=?");
+            PreparedStatement ps = cn.prepareStatement(query.toString());
+            ps.setDouble(1, 10.53);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result = rs.getDouble(1);
+            }
+
+            assertEquals(expResult, result,0.0);
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("No se tiene acceso al servidor");
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception ex) {
+            }
+        }
+    }
+    
+    @Test
+    public void DBDecimalDiferentes() {
+        Connection cn = null;
+        try {
+            System.out.println("DBDecimalDiferentes");
+            double expResult = 11.53;
+            double result=0.0;
+            cn = AccesoDB.getConnection();
+            StringBuilder query = new StringBuilder();
+            query.append("SELECT c FROM Decimal WHERE c=?");
+            PreparedStatement ps = cn.prepareStatement(query.toString());
+            ps.setDouble(1, 10.53);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result = rs.getDouble(1);
+            }
+
+            assertEquals(expResult, result,0.0);
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("No se tiene acceso al servidor");
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception ex) {
+            }
+        }
     }
 }
